@@ -994,6 +994,18 @@ a.work-card:hover { opacity: 0.88; }
   .love-notes-media { grid-template-columns: 1fr; }
 }
 
+/* Love Notes image grid */
+.love-notes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+@media (max-width: 900px) {
+  .love-notes-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* Sip & Sound 3-column media layout */
 .sip-sound-media-grid {
   display: grid;
