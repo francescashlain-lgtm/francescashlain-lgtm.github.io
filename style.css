@@ -246,7 +246,7 @@ nav {
 
 .work-card-img {
   width: calc(100% - 40px);
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
   margin: 20px auto 0;
@@ -923,6 +923,27 @@ a.work-card:hover { opacity: 0.88; }
   line-height: 1.8;
 }
 
+/* Sip & Sound 3-column media layout */
+.sip-sound-media-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.sip-sound-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.media-caption {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: var(--red);
+  margin: 8px 0 0;
+  text-align: center;
+}
+
 .project-back {
   background: var(--cream);
   padding: 0 80px 48px;
@@ -984,6 +1005,7 @@ a.work-card:hover { opacity: 0.88; }
   .project-back { padding-left: 24px; padding-right: 24px; }
   .project-content { grid-template-columns: 1fr; gap: 40px; }
   .project-media-grid { grid-template-columns: 1fr; }
+  .sip-sound-media-grid { grid-template-columns: 1fr; }
 }
 
 /* =============================================
