@@ -923,6 +923,27 @@ a.work-card:hover { opacity: 0.88; }
   line-height: 1.8;
 }
 
+/* Love Notes 2.0 media layout */
+.love-notes-media {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.love-notes-media-text p {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800;
+  color: var(--red);
+  line-height: 1.15;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .love-notes-media { grid-template-columns: 1fr; }
+}
+
 /* Sip & Sound 3-column media layout */
 .sip-sound-media-grid {
   display: grid;
