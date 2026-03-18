@@ -74,15 +74,32 @@
         <p>Press play to see how we sent out love at scale.</p>
       </div>
       <div class="love-notes-media-video">
+        <div class="video-poster" id="vimeo-poster" onclick="playVideo()">
+          <img src="../assets/images/love-notes-2-video-cover.png" alt="Target Love Notes — press play">
+          <button class="video-play-btn" aria-label="Play video">
+            <svg viewBox="0 0 24 24" fill="white" width="48" height="48"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.55)"/><polygon points="10,8 18,12 10,16" fill="white"/></svg>
+          </button>
+        </div>
         <iframe
-          src="https://player.vimeo.com/video/203515421"
+          id="vimeo-iframe"
+          src=""
+          data-src="https://player.vimeo.com/video/203515421?autoplay=1"
           title="Target Love Notes 2.0 — UX demo"
           frameborder="0"
           allow="autoplay; fullscreen; picture-in-picture"
           allowfullscreen
-          style="width:100%; aspect-ratio:16/9; display:block; border-radius:4px;">
+          style="width:100%; aspect-ratio:16/9; display:none; border-radius:4px;">
         </iframe>
       </div>
+      <script>
+        function playVideo() {
+          var poster = document.getElementById('vimeo-poster');
+          var iframe = document.getElementById('vimeo-iframe');
+          iframe.src = iframe.dataset.src;
+          poster.style.display = 'none';
+          iframe.style.display = 'block';
+        }
+      </script>
     </div>
   </section>
 
