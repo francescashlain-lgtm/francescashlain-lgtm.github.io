@@ -923,6 +923,25 @@ a.work-card:hover { opacity: 0.88; }
   line-height: 1.8;
 }
 
+/* Love Notes 2.0 GIF grid */
+.love-notes-gif-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.love-notes-gif-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+@media (max-width: 900px) {
+  .love-notes-gif-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* Love Notes 2.0 media layout */
 .love-notes-media {
   display: grid;
