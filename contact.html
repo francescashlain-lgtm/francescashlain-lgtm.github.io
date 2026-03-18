@@ -21,17 +21,58 @@
     </ul>
   </nav>
 
-  <section class="contact-section">
-    <h1 class="contact-heading">
-      Let's make something great together.
-    </h1>
-    <p class="contact-sub">
-      I'm always open to new ideas, collaborations, and conversations.
-      Drop me a line — I'd love to hear from you.
-    </p>
-    <a href="mailto:fshlain@umich.edu" class="contact-email">fshlain@umich.edu</a>
-    <div style="display: flex; gap: 24px; margin-top: 16px;">
-      <a href="https://www.linkedin.com/in/francescashlain" class="btn-outline-white" target="_blank" rel="noopener">LinkedIn</a>
+  <section class="contact-page">
+    <!-- LEFT -->
+    <div class="contact-left">
+      <h1 class="contact-page-heading"><s>Contact</s> Now<br>we're talking</h1>
+      <svg class="contact-wavy" viewBox="0 0 200 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 18 Q25 4 50 18 Q75 32 100 18 Q125 4 150 18 Q175 32 200 18" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none"/>
+      </svg>
+      <a href="mailto:francesca.shlain@gmail.com" class="contact-email-link">francesca.shlain@gmail.com</a>
+      <a href="assets/resume.pdf" class="contact-resume-btn" target="_blank" rel="noopener">Resume</a>
+      <div class="contact-social-icons">
+        <a href="mailto:francesca.shlain@gmail.com" title="Email" aria-label="Email">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/francescashlain" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT: FORM -->
+    <div class="contact-right">
+      <!--
+        To make this form actually send emails, sign up at formspree.io,
+        create a form, and replace YOUR_FORM_ID below with your form ID.
+        e.g. action="https://formspree.io/f/abcdefgh"
+      -->
+      <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-sublabel">First Name <span>(required)</span></label>
+              <input type="text" name="first_name" required class="form-input">
+            </div>
+            <div class="form-field">
+              <label class="form-sublabel">Last Name <span>(required)</span></label>
+              <input type="text" name="last_name" required class="form-input">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-sublabel">Email <span>(required)</span></label>
+          <input type="email" name="email" required class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-sublabel">Message <span>(required)</span></label>
+          <textarea name="message" required class="form-textarea" rows="5"></textarea>
+        </div>
+        <div style="text-align: right;">
+          <button type="submit" class="form-submit">Send</button>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -47,7 +88,7 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <div class="footer-icons">
-        <a href="mailto:fshlain@umich.edu" title="Email" aria-label="Email">
+        <a href="mailto:francesca.shlain@gmail.com" title="Email" aria-label="Email">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
         </a>
         <a href="https://www.linkedin.com/in/francescashlain" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener">

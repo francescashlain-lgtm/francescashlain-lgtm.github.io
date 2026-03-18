@@ -21,63 +21,83 @@
     </ul>
   </nav>
 
-  <div class="page-hero">
-    <h1 class="page-title">Work</h1>
-  </div>
+  <!-- WORK PAGE HERO -->
+  <section class="work-page-hero">
+    <h1 class="work-page-title"><s>Work</s> Play</h1>
+    <p class="work-page-sub">I'm a marketing &amp; advertising professional with 8+ years of experience building creative solutions for big brands and clients across numerous marketing channels.</p>
+    <div class="tagline-divider"></div>
+  </section>
 
-  <div style="background: var(--cream); padding: 64px 48px;">
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto;">
+  <!-- FILTER -->
+  <section class="work-filter">
+    <hr class="filter-rule">
+    <div class="filter-inner">
+      <span class="filter-label">Filter Projects</span>
+      <ul class="filter-list" id="filter-list">
+        <li><button class="filter-btn active" data-filter="all">All</button></li>
+        <li><button class="filter-btn" data-filter="b2c">B2C</button></li>
+        <li><button class="filter-btn" data-filter="b2b">B2B</button></li>
+        <li><button class="filter-btn" data-filter="product">Product</button></li>
+        <li><button class="filter-btn" data-filter="partnerships">Partnerships</button></li>
+      </ul>
+    </div>
+    <hr class="filter-rule">
+  </section>
 
-      <!-- CARD: Creative -->
-      <div class="work-card" id="creative">
-        <img src="assets/images/work-creative.png" alt="Creative — Baby playlist campaign" class="work-card-img">
+  <!-- WORK GRID -->
+  <section class="work-page-grid-wrap">
+    <div class="work-page-grid" id="work-grid">
+
+      <!-- 1. Amazon x Cheerios -->
+      <a class="work-card" data-category="b2b" href="projects/amazon-cheerios.html">
+        <img src="assets/images/work-amazon-cheerios.png" alt="Amazon x Cheerios" class="work-card-img">
         <div class="work-card-body">
-          <h3 class="work-card-title">Creative</h3>
-          <p class="work-card-desc">Hear how I turned an RFP into a campaign to creatively introduce babies to the world of music</p>
-          <!--
-            Link to a detail page or external case study:
-            <a href="work-creative.html" class="btn-blue">The Work</a>
-          -->
-          <a href="#creative" class="btn-blue">The Work</a>
+          <h3 class="work-card-title">Amazon × Cheerios</h3>
         </div>
-      </div>
+      </a>
 
-      <!-- CARD: Brand -->
-      <div class="work-card" id="brand">
-        <img src="assets/images/work-brand.gif" alt="Brand — Target Twitter GIFs" class="work-card-img">
+      <!-- 2. Sip & Sound (Spotify) -->
+      <a class="work-card" data-category="b2b" href="projects/sip-sound.html">
+        <div class="work-card-placeholder">work-sip-sound.png</div>
         <div class="work-card-body">
-          <h3 class="work-card-title">Brand</h3>
-          <p class="work-card-desc">See how I put Target's Twitter in motion with our first set of branded GIFs</p>
-          <a href="#brand" class="btn-blue">The Work</a>
+          <h3 class="work-card-title">Sip &amp; Sound</h3>
         </div>
-      </div>
+      </a>
 
-      <!-- CARD: Partnerships -->
-      <div class="work-card" id="partnerships">
-        <img src="assets/images/work-partnerships.png" alt="Partnerships — Black Panther x Spotify" class="work-card-img">
+      <!-- 3. Culture Next (Spotify) -->
+      <a class="work-card" data-category="b2b" href="projects/culture-next.html">
+        <div class="work-card-placeholder">work-culture-next.png</div>
         <div class="work-card-body">
-          <h3 class="work-card-title">Partnerships</h3>
-          <p class="work-card-desc">Feel the power of Black Panther and Spotify collaborating for a cultural moment</p>
-          <a href="#partnerships" class="btn-blue">The Work</a>
+          <h3 class="work-card-title">Culture Next</h3>
         </div>
-      </div>
+      </a>
 
-      <!--
-        ADD MORE WORK CARDS HERE following the same pattern.
-        Each card:
-
-        <div class="work-card" id="your-project-id">
-          <img src="assets/images/work-yourproject.jpg" alt="Description" class="work-card-img">
-          <div class="work-card-body">
-            <h3 class="work-card-title">Category</h3>
-            <p class="work-card-desc">Your description here</p>
-            <a href="work-yourproject.html" class="btn-blue">The Work</a>
-          </div>
+      <!-- 4. Love Notes 2.0 (Target) -->
+      <a class="work-card" data-category="b2c" href="projects/love-notes-2.html">
+        <div class="work-card-placeholder">work-love-notes-2.png</div>
+        <div class="work-card-body">
+          <h3 class="work-card-title">Love Notes 2.0</h3>
         </div>
-      -->
+      </a>
+
+      <!-- 5. Love Notes (Target) -->
+      <a class="work-card" data-category="b2c" href="projects/love-notes.html">
+        <div class="work-card-placeholder">work-love-notes.png</div>
+        <div class="work-card-body">
+          <h3 class="work-card-title">Love Notes</h3>
+        </div>
+      </a>
+
+      <!-- 6. GIFs (Target) -->
+      <a class="work-card" data-category="b2c" href="projects/gifs.html">
+        <div class="work-card-placeholder">work-gifs.png</div>
+        <div class="work-card-body">
+          <h3 class="work-card-title">GIFs</h3>
+        </div>
+      </a>
 
     </div>
-  </div>
+  </section>
 
   <footer>
     <div class="footer-left">
@@ -101,6 +121,21 @@
     </div>
     <hr class="footer-rule">
   </footer>
+
+  <script>
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.work-card');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        cards.forEach(card => {
+          card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'flex' : 'none';
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>
