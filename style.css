@@ -1,0 +1,633 @@
+/* =============================================
+   Francesca Shlain — Portfolio
+   style.css
+   ============================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --lavender: #ddd9ec;
+  --blue:     #2B3EC1;
+  --red:      #E8401C;
+  --cream:    #f0ebe0;
+  --white:    #ffffff;
+}
+
+body {
+  font-family: 'Playfair Display', serif;
+  color: var(--blue);
+  overflow-x: hidden;
+}
+
+/* =============================================
+   NAV
+   ============================================= */
+nav {
+  background: var(--lavender);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 48px;
+  position: relative;
+  z-index: 10;
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--red);
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: var(--blue);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  text-decoration: underline;
+}
+
+.nav-links .nav-cta {
+  background: var(--blue);
+  color: var(--white);
+  padding: 10px 24px;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none !important;
+}
+
+.nav-links .nav-cta:hover {
+  opacity: 0.85;
+}
+
+/* =============================================
+   HERO
+   ============================================= */
+.hero {
+  position: relative;
+  min-height: 620px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  overflow: hidden;
+  background: #c5c0b8; /* fallback while image loads */
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('assets/images/hero-photo.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.hero-center {
+  position: relative;
+  z-index: 2;
+  background: rgba(221, 217, 236, 0.88);
+  width: 42%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 40px;
+  text-align: center;
+}
+
+.hero-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(1.6rem, 3vw, 2.8rem);
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+}
+
+/* =============================================
+   TAGLINE SECTION
+   ============================================= */
+.tagline-section {
+  background: var(--blue);
+  padding: 80px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.tagline-heading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-style: italic;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  color: var(--white);
+  max-width: 780px;
+  line-height: 1.3;
+}
+
+.tagline-heading s {
+  opacity: 0.55;
+}
+
+.tagline-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 560px;
+  line-height: 1.6;
+}
+
+.tagline-divider {
+  width: 1px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.35);
+  margin-top: 12px;
+}
+
+/* =============================================
+   CLIENTS SECTION
+   ============================================= */
+.clients-section {
+  background: var(--cream);
+  padding: 80px 48px;
+}
+
+.clients-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--red);
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: center;
+  justify-items: center;
+}
+
+/* Text-based logo styles — swap for <img> tags when you have SVGs */
+.client-logo {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: var(--blue);
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+.logo-netflix  { font-size: 1.5rem; letter-spacing: -0.03em; }
+.logo-disney   { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.6rem; }
+.logo-mars     { font-size: 1.5rem; letter-spacing: 0.1em; }
+.logo-campbells { font-family: 'Playfair Display', serif; font-style: italic; }
+.logo-kelloggs { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; }
+.logo-kraftheinz { font-family: 'Playfair Display', serif; font-style: italic; }
+.logo-skyy     { letter-spacing: 0.08em; }
+.logo-vw       { font-size: 1.8rem; }
+.logo-epic     { font-size: 1.1rem; letter-spacing: 0.02em; }
+.logo-mondelez { font-size: 1rem; }
+
+/* =============================================
+   WAVY DIVIDER
+   ============================================= */
+.wavy-divider {
+  background: var(--cream);
+  text-align: center;
+  padding: 24px 0 8px;
+}
+
+.wavy-divider svg {
+  width: 220px;
+}
+
+/* =============================================
+   WORK SECTION
+   ============================================= */
+.work-section {
+  background: var(--cream);
+  padding: 32px 48px 80px;
+}
+
+.work-heading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  color: var(--blue);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 48px;
+  letter-spacing: 0.02em;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto 52px;
+}
+
+.work-card {
+  background: var(--lavender);
+  display: flex;
+  flex-direction: column;
+}
+
+.work-card-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.work-card-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #b5b0c8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  padding: 16px;
+}
+
+.work-card-body {
+  padding: 28px 24px 32px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.work-card-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--red);
+}
+
+.work-card-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: var(--blue);
+  line-height: 1.55;
+  flex: 1;
+}
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+.btn-blue {
+  display: inline-block;
+  background: var(--blue);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 32px;
+  margin-top: 8px;
+  transition: opacity 0.15s;
+}
+
+.btn-blue:hover { opacity: 0.82; }
+
+.btn-outline-white {
+  display: inline-block;
+  border: 2px solid var(--white);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 32px;
+  text-align: center;
+  transition: background 0.15s;
+}
+
+.btn-outline-white:hover { background: rgba(255, 255, 255, 0.12); }
+
+.btn-outline-blue {
+  display: inline-block;
+  border: 2px solid var(--blue);
+  color: var(--blue);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 48px;
+  text-align: center;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-outline-blue:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.center { text-align: center; }
+
+/* =============================================
+   ABOUT SPLIT (HOME PREVIEW)
+   ============================================= */
+.about-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+}
+
+.about-photo-side {
+  background: var(--white);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.about-photo-side img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.about-placeholder {
+  width: 100%;
+  min-height: 500px;
+  background: #d9d4c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #888;
+  text-align: center;
+  padding: 24px;
+}
+
+.about-text-side {
+  background: var(--blue);
+  padding: 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+
+.about-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.about-eyebrow s { opacity: 0.45; }
+
+.about-body {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: var(--white);
+  line-height: 1.75;
+}
+
+/* Full about page */
+.about-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 700px;
+}
+
+.about-page .about-photo-side {
+  min-height: 600px;
+}
+
+/* =============================================
+   WORK PAGE
+   ============================================= */
+.page-hero {
+  background: var(--lavender);
+  padding: 80px 48px 64px;
+  text-align: center;
+}
+
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  color: var(--blue);
+  text-transform: uppercase;
+}
+
+.work-full-grid {
+  background: var(--cream);
+  padding: 64px 48px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* =============================================
+   CONTACT PAGE
+   ============================================= */
+.contact-section {
+  background: var(--blue);
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 48px;
+  text-align: center;
+  gap: 32px;
+}
+
+.contact-heading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-style: italic;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: var(--white);
+  max-width: 680px;
+  line-height: 1.25;
+}
+
+.contact-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.contact-email {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--white);
+  text-decoration: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  padding-bottom: 4px;
+  transition: border-color 0.15s;
+}
+
+.contact-email:hover { border-color: var(--white); }
+
+/* =============================================
+   FOOTER
+   ============================================= */
+footer {
+  background: var(--lavender);
+  padding: 64px 48px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--red);
+  line-height: 1.1;
+}
+
+.footer-tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: var(--blue);
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.footer-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.footer-nav a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.footer-nav a:hover { opacity: 0.7; }
+
+.footer-icons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  color: var(--red);
+}
+
+.footer-icons a {
+  color: var(--red);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.15s;
+}
+
+.footer-icons a:hover { opacity: 0.7; }
+
+.footer-rule {
+  grid-column: 1 / -1;
+  border: none;
+  border-top: 1px solid rgba(43, 62, 193, 0.25);
+  margin-top: 8px;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 960px) {
+  nav { padding: 16px 24px; }
+  .hero-center { width: 60%; }
+  .clients-grid { grid-template-columns: repeat(3, 1fr); }
+  .work-grid,
+  .work-full-grid { grid-template-columns: 1fr 1fr; }
+  .about-split,
+  .about-page { grid-template-columns: 1fr; }
+  .about-photo-side { min-height: 380px; }
+  footer { grid-template-columns: 1fr; }
+  .footer-right { align-items: flex-start; }
+  .footer-nav { align-items: flex-start; }
+}
+
+@media (max-width: 640px) {
+  nav { padding: 14px 20px; gap: 12px; }
+  .nav-links { gap: 16px; }
+  .hero-center { width: 80%; padding: 60px 24px; }
+  .tagline-section,
+  .clients-section,
+  .work-section,
+  .page-hero { padding-left: 24px; padding-right: 24px; }
+  .about-text-side { padding: 48px 24px; }
+  .clients-grid { grid-template-columns: repeat(2, 1fr); }
+  .work-grid,
+  .work-full-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+  footer { padding: 48px 24px 32px; }
+  .contact-section { padding: 64px 24px; }
+}
