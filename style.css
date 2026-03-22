@@ -942,6 +942,25 @@ a.work-card:hover { opacity: 0.88; }
   .love-notes-gif-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* Target Instagram Strategy */
+.instagram-section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--red);
+  margin: 0 0 20px;
+}
+
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .instagram-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* GIFs project grid */
 .gifs-grid {
   display: grid;
