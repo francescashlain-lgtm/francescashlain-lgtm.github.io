@@ -6,122 +6,1011 @@
   <title>Francesca Shlain — Creative Brand Marketer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================
+       RESET & BASE
+       ============================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --orange:     #FF4F14;
+      --yellow:     #E6FE74;
+      --pink:       #F5C2DA;
+      --cream:      #FCFAEC;
+      --near-black: var(--orange);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      color: var(--near-black);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; }
+
+    /* =============================================
+       KEYFRAMES
+       ============================================= */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    @keyframes heroImgDrift {
+      from {
+        opacity: 0;
+        transform: rotate(-2deg) translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: rotate(-2deg) translateY(0);
+      }
+    }
+
+    /* Scroll-triggered fade-up */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =============================================
+       NAV
+       ============================================= */
+    .nav {
+      background: var(--cream);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,79,20,0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Righteous', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--near-black);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      font-size: 0.875rem;
+      color: var(--near-black);
+      letter-spacing: 0.02em;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--orange);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a.active { color: var(--orange); }
+
+    /* =============================================
+       HERO — CUTOUT EDITORIAL
+       ============================================= */
+    @keyframes heroFigureUp {
+      from { opacity: 0; transform: translateY(48px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes heroSideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero {
+      background: var(--orange);
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: stretch;
+      overflow: hidden;
+      position: relative;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    /* LEFT PANEL */
+    .hero-left-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 80px 20px 40px 56px;
+      gap: 28px;
+      position: relative;
+      z-index: 4;
+      animation: heroSideIn 0.7s ease both;
+      animation-delay: 0.35s;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(252,250,236,0.65);
+    }
+
+    .hero-name {
+      font-family: 'Righteous', sans-serif;
+      font-size: clamp(3.5rem, 6vw, 7.5rem);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-name-first {
+      color: var(--cream);
+    }
+
+    .hero-name-last {
+      -webkit-text-stroke: 2.5px var(--yellow);
+      color: transparent;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--yellow);
+      color: var(--orange);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 13px 24px;
+      border: none;
+      border-radius: 2px;
+      width: fit-content;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+
+    .hero-cta:hover {
+      background: var(--cream);
+      color: var(--orange);
+      transform: translateY(-2px);
+    }
+
+    /* CENTER FIGURE */
+    .hero-center-figure {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      position: relative;
+      z-index: 3;
+      overflow: hidden;
+      max-height: 82svh;
+    }
+
+    .hero-cutout-img {
+      height: 110svh;
+      width: auto;
+      display: block;
+      animation: heroFigureUp 1s ease both;
+      animation-delay: 0.1s;
+    }
+
+    /* RIGHT PANEL */
+    .hero-right-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 80px 56px 40px 20px;
+      gap: 20px;
+      position: relative;
+      z-index: 4;
+      animation: heroSideIn 0.7s ease both;
+      animation-delay: 0.5s;
+    }
+
+    .hero-roles {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hero-role {
+      font-family: 'Righteous', sans-serif;
+      font-size: clamp(0.85rem, 1.3vw, 1.1rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(252,250,236,0.65);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .hero-role-accent {
+      color: var(--yellow);
+    }
+
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        min-height: auto;
+        padding-bottom: 0;
+      }
+      .hero-center-figure {
+        grid-column: 1 / -1;
+        grid-row: 1;
+      }
+      .hero-left-panel  { grid-column: 1; grid-row: 2; padding: 32px 16px 48px 24px; }
+      .hero-right-panel { grid-column: 2; grid-row: 2; padding: 32px 24px 48px 16px; }
+      .hero-cutout-img  { height: 55svh; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-left-panel  { grid-column: 1; padding: 24px 24px 16px; }
+      .hero-right-panel { grid-column: 1; padding: 0 24px 48px; }
+      .hero-cutout-img  { height: 50svh; }
+    }
+
+    /* =============================================
+       CLIENT NAME MARQUEE
+       ============================================= */
+    .client-marquee-strip {
+      background: var(--pink);
+      padding: 28px 0 32px;
+      overflow: hidden;
+      margin-top: -18svh;
+      position: relative;
+      z-index: 5;
+    }
+
+    .client-marquee-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,79,20,0.5);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .client-marquee-track {
+      overflow: hidden;
+    }
+
+    .client-marquee-content {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      white-space: nowrap;
+      animation: logoScroll 35s linear infinite;
+      will-change: transform;
+      width: max-content;
+    }
+
+    .client-marquee-content span {
+      font-family: 'Righteous', sans-serif;
+      font-size: 1.1rem;
+      color: var(--orange);
+      padding: 0 8px;
+      transition: color 0.2s ease;
+    }
+
+    .client-marquee-content span:hover {
+      color: var(--cream);
+    }
+
+    .client-sep {
+      color: var(--orange) !important;
+      font-size: 0.6rem !important;
+      opacity: 0.5;
+      padding: 0 4px !important;
+    }
+
+    /* =============================================
+       LOGO MARQUEE
+       ============================================= */
+    @keyframes logoScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .logo-marquee-strip {
+      background: var(--orange);
+      padding: 32px 0 36px;
+      overflow: hidden;
+    }
+
+    .logo-marquee-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(250,240,230,0.5);
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .logo-marquee-track {
+      overflow: hidden;
+    }
+
+    .logo-marquee-content {
+      display: flex;
+      align-items: center;
+      gap: 56px;
+      white-space: nowrap;
+      animation: logoScroll 30s linear infinite;
+      will-change: transform;
+      width: max-content;
+    }
+
+    .logo-marquee-content img {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.65;
+      transition: opacity 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .logo-marquee-content img:hover {
+      opacity: 1;
+    }
+
+    /* =============================================
+       WAVY SVG DIVIDER
+       ============================================= */
+    .wavy-divider-wrap {
+      background: var(--pink);
+      margin-top: -2px;
+      line-height: 0;
+    }
+
+    .wavy-divider-wrap svg {
+      display: block;
+      width: 100%;
+    }
+
+    /* =============================================
+       PROJECT ROWS
+       ============================================= */
+    .proj-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      min-height: 340px;
+      max-height: 420px;
+      height: 420px;
+    }
+
+    .proj-row--flip {
+      grid-template-columns: 1fr 2fr;
+    }
+
+    .proj-row--cream  { background: var(--cream); }
+    .proj-row--sand   { background: #F2A0C8; border-top: 4px solid var(--orange); border-bottom: 4px solid var(--orange); }
+    .proj-row--dark   { background: var(--near-black); }
+
+    .proj-row--flip .proj-row-image { order: -1; }
+
+    .proj-row-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      padding: 40px 56px;
+    }
+
+    .proj-row--dark .proj-row-text .section-label { color: var(--cream); }
+    .proj-row--dark .proj-row-heading { color: var(--yellow); }
+    .proj-row--dark .proj-row-heading em { color: var(--cream); }
+    .proj-row--dark .proj-row-heading s  { color: var(--cream); }
+    .proj-row--dark .proj-row-body    { color: rgba(250,240,230,0.9); }
+    .proj-row--dark .proj-row-cta     { background: var(--yellow); color: var(--orange); }
+    .proj-row--dark .proj-row-cta:hover { background: var(--cream); color: var(--orange); }
+
+    .proj-row-heading {
+      font-family: 'Righteous', sans-serif;
+      font-size: clamp(2.4rem, 4vw, 4rem);
+      color: var(--near-black);
+      line-height: 1.05;
+    }
+
+    .proj-row-heading em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .proj-row-heading s {
+      color: var(--orange);
+      text-decoration-thickness: 3px;
+      opacity: 1;
+    }
+
+    .proj-row-body {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      color: var(--near-black);
+      line-height: 1.75;
+      max-width: 480px;
+    }
+
+    .proj-row-cta {
+      display: inline-block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      color: var(--yellow);
+      background: var(--orange);
+      padding: 14px 28px;
+      border-radius: 2px;
+      width: fit-content;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .proj-row-cta:hover {
+      background: var(--yellow);
+      color: var(--orange);
+      transform: translateY(-2px);
+    }
+
+    .proj-row-image {
+      overflow: hidden;
+    }
+
+    .proj-row-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .proj-row:hover .proj-row-image img {
+      transform: scale(1.03);
+    }
+
+    @media (max-width: 768px) {
+      .proj-row { grid-template-columns: 1fr; }
+      .proj-row--flip .proj-row-image { order: 0; }
+      .proj-row-text { padding: 40px 24px; }
+      .proj-row-image { min-height: 280px; }
+    }
+
+    .section-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .section-heading {
+      font-family: 'Righteous', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      color: var(--near-black);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 56px;
+    }
+
+    /* 12-column work grid */
+    .work-grid-v2 {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+      max-width: 1440px;
+    }
+
+    .work-card-v2 {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      display: block;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .work-card-v2:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(255,79,20,0.22);
+    }
+
+    /* alternating column spans */
+    .work-card-v2:nth-child(1) { grid-column: span 7; }
+    .work-card-v2:nth-child(2) { grid-column: span 5; }
+    .work-card-v2:nth-child(3) { grid-column: span 5; }
+    .work-card-v2:nth-child(4) { grid-column: span 7; }
+    .work-card-v2:nth-child(5) { grid-column: span 7; }
+    .work-card-v2:nth-child(6) { grid-column: span 5; }
+
+    .work-card-v2 img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      aspect-ratio: 4 / 3;
+      transition: transform 0.4s ease;
+    }
+
+    .work-card-v2:hover img {
+      transform: scale(1.03);
+    }
+
+    .work-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--orange);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 32px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .work-card-v2:hover .work-card-overlay {
+      opacity: 1;
+    }
+
+    .work-card-overlay-title {
+      font-family: 'Righteous', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .work-card-overlay-arrow {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.75);
+    }
+
+    /* =============================================
+       ABOUT STRIP
+       ============================================= */
+    .about-strip {
+      background: var(--cream);
+      padding: 96px 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-left {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .about-quote {
+      font-family: 'Righteous', sans-serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      color: var(--near-black);
+      line-height: 1.25;
+    }
+
+    .about-quote s {
+      color: var(--orange);
+      text-decoration: line-through;
+      text-decoration-color: var(--orange);
+      text-decoration-thickness: 3px;
+      opacity: 1;
+    }
+
+    .wavy-underline {
+      display: block;
+      margin-top: 4px;
+    }
+
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .about-body-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      font-size: 1.05rem;
+      color: var(--near-black);
+      line-height: 1.75;
+    }
+
+    .about-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--orange);
+      letter-spacing: 0.04em;
+      border-bottom: 1.5px solid var(--orange);
+      padding-bottom: 2px;
+      width: fit-content;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .about-link:hover {
+      color: var(--pink);
+      border-color: var(--pink);
+    }
+
+    /* =============================================
+       FOOTER
+       ============================================= */
+    .site-footer {
+      background: var(--pink);
+      padding: 64px 56px 0;
+      margin-bottom: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-name {
+      font-family: 'Righteous', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--orange);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-tagline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.875rem;
+      color: rgba(255,79,20,0.6);
+      line-height: 1.5;
+      max-width: 280px;
+    }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 20px;
+    }
+
+    .footer-nav {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer-nav a {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,79,20,0.65);
+      transition: color 0.2s ease;
+    }
+
+    .footer-nav a:hover { color: var(--orange); }
+
+    .footer-icons {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .footer-icons a {
+      color: rgba(255,79,20,0.65);
+      display: flex;
+      align-items: center;
+      transition: color 0.2s ease;
+    }
+
+    .footer-icons a:hover { color: var(--orange); }
+
+    .footer-rule-wrap {
+      background: var(--pink);
+      padding: 0 56px;
+      grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+      background: var(--pink);
+      padding: 28px 56px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: none;
+      margin-top: 0;
+    }
+
+    .footer-copy {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(255,79,20,0.5);
+    }
+
+    /* =============================================
+       RESPONSIVE
+       ============================================= */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 60px 40px; }
+      .hero-right { padding: 0 40px 60px; height: 480px; }
+      .hero-photo-wrap { transform: rotate(-1deg); }
+      .work-card-v2:nth-child(odd)  { grid-column: span 7; }
+      .work-card-v2:nth-child(even) { grid-column: span 5; }
+    }
+
+    @media (max-width: 768px) {
+      .nav { padding: 18px 24px; }
+      .nav-links { gap: 20px; }
+      .hero-left { padding: 48px 24px; }
+      .hero-right { padding: 0 24px 48px; height: 380px; }
+      .hero-word { font-size: clamp(3.5rem, 14vw, 6rem); }
+      .work-section { padding: 56px 24px 72px; }
+      .work-card-v2 { grid-column: span 12 !important; }
+      .about-strip { grid-template-columns: 1fr; gap: 40px; padding: 64px 24px; }
+      .site-footer { grid-template-columns: 1fr; padding: 48px 24px 0; }
+      .footer-right { align-items: flex-start; }
+      .footer-nav { flex-direction: column; gap: 12px; }
+      .footer-bottom { padding: 24px 24px 32px; flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links { gap: 14px; }
+      .hero-word { font-size: 14vw; }
+      .marquee-text { font-size: 0.65rem; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
+  <!-- =============================================
+       NAV
+       ============================================= -->
+  <nav class="nav">
     <a href="index.html" class="nav-logo">Francesca Shlain</a>
     <ul class="nav-links">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="work.html">Work</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- HERO -->
+  <!-- SVG filter for cutout outline -->
+  <svg width="0" height="0" style="position:absolute;overflow:hidden;" aria-hidden="true">
+    <defs>
+      <filter id="cutout-outline" x="-2%" y="-1%" width="104%" height="102%">
+        <feMorphology in="SourceAlpha" result="dilated" operator="dilate" radius="4"/>
+        <feComponentTransfer in="dilated" result="hardEdge">
+          <feFuncA type="discrete" tableValues="0 1"/>
+        </feComponentTransfer>
+        <feFlood flood-color="#FCFAEC" result="color"/>
+        <feComposite in="color" in2="hardEdge" operator="in" result="outline"/>
+        <feMerge>
+          <feMergeNode in="outline"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- =============================================
+       HERO
+       ============================================= -->
   <section class="hero">
-    <div class="hero-photo-side"></div>
-    <div class="hero-center">
-      <div class="hero-titles">
-        <span class="hero-title">Strategist</span>
-        <span class="hero-title">B2B &amp; B2C Marketer</span>
-        <span class="hero-title">Creative Champion</span>
-        <span class="hero-title">Lover of Lists</span>
-        <span class="hero-title">Storyteller</span>
+
+    <!-- LEFT: name + CTA -->
+    <div class="hero-left-panel">
+      <span class="hero-eyebrow">Creative Brand Marketer</span>
+      <div class="hero-name">
+        <span class="hero-name-first">Francesca</span>
+        <span class="hero-name-last">Shlain</span>
+      </div>
+      <a href="work.html" class="hero-cta">
+        See My Work
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- CENTER: cutout figure -->
+    <div class="hero-center-figure">
+      <img src="assets/images/hero-cutout.png" alt="Francesca Shlain" class="hero-cutout-img" style="filter:url(#cutout-outline);">
+    </div>
+
+    <!-- RIGHT: roles + blurb -->
+    <div class="hero-right-panel">
+      <div class="hero-roles">
+        <span class="hero-role hero-role-accent">Strategist</span>
+        <span class="hero-role">Storyteller</span>
+        <span class="hero-role hero-role-accent">B2B &amp; B2C</span>
+        <span class="hero-role">Lover of Lists</span>
+        <span class="hero-role hero-role-accent">Creative Champion</span>
       </div>
     </div>
-    <div class="hero-photo-side"></div>
+
   </section>
 
-  <!-- TAGLINE -->
-  <section class="tagline-section">
-    <h2 class="tagline-heading">
-      I've never met an RFP I <s>didn't like</s> couldn't conquer.
-    </h2>
-    <p class="tagline-sub">I'm a creative brand marketer who's happiest when brainstorming.</p>
-    <div class="tagline-divider"></div>
-  </section>
-
-  <!-- CLIENTS -->
-  <section class="clients-section">
-    <p class="clients-label">Clients Include</p>
-    <div class="clients-grid">
-      <img src="assets/images/logos/netflix.png" alt="Netflix" class="client-logo">
-      <img src="assets/images/logos/pepsico.png" alt="PepsiCo" class="client-logo">
-      <img src="assets/images/logos/pg.png" alt="P&G" class="client-logo">
-      <img src="assets/images/logos/state-farm.png" alt="State Farm" class="client-logo">
-      <img src="assets/images/logos/kraft-heinz.png" alt="Kraft Heinz" class="client-logo">
-      <img src="assets/images/logos/disney.png" alt="Disney" class="client-logo">
-      <img src="assets/images/logos/kimberly-clark.png" alt="Kimberly-Clark" class="client-logo">
-      <img src="assets/images/logos/general-mills.png" alt="General Mills" class="client-logo">
-      <img src="assets/images/logos/skyy.png" alt="SKYY Vodka" class="client-logo">
-      <img src="assets/images/logos/mars.png" alt="Mars" class="client-logo">
-      <img src="assets/images/logos/campbells.png" alt="Campbell's" class="client-logo">
-      <img src="assets/images/logos/walmart.png" alt="Walmart" class="client-logo">
-      <img src="assets/images/logos/vw.png" alt="Volkswagen" class="client-logo">
-      <img src="assets/images/logos/epic-games.png" alt="Epic Games" class="client-logo">
-      <img src="assets/images/logos/mondelez.png" alt="Mondelēz International" class="client-logo">
-      <img src="assets/images/logos/kelloggs.png" alt="Kellogg's" class="client-logo">
+  <!-- CLIENT NAME MARQUEE -->
+  <div class="client-marquee-strip" aria-label="Clients include">
+    <p class="client-marquee-label">Brands I've worked with</p>
+    <div class="client-marquee-track">
+      <div class="client-marquee-content">
+        <span>Netflix</span><span class="client-sep">✦</span>
+        <span>PepsiCo</span><span class="client-sep">✦</span>
+        <span>P&amp;G</span><span class="client-sep">✦</span>
+        <span>State Farm</span><span class="client-sep">✦</span>
+        <span>Kraft Heinz</span><span class="client-sep">✦</span>
+        <span>Disney</span><span class="client-sep">✦</span>
+        <span>Kimberly-Clark</span><span class="client-sep">✦</span>
+        <span>General Mills</span><span class="client-sep">✦</span>
+        <span>SKYY Vodka</span><span class="client-sep">✦</span>
+        <span>Mars</span><span class="client-sep">✦</span>
+        <span>Campbell's</span><span class="client-sep">✦</span>
+        <span>Walmart</span><span class="client-sep">✦</span>
+        <span>Volkswagen</span><span class="client-sep">✦</span>
+        <span>Epic Games</span><span class="client-sep">✦</span>
+        <span>Mondelēz</span><span class="client-sep">✦</span>
+        <span>Kellogg's</span><span class="client-sep">✦</span>
+        <!-- duplicate for seamless loop -->
+        <span>Netflix</span><span class="client-sep">✦</span>
+        <span>PepsiCo</span><span class="client-sep">✦</span>
+        <span>P&amp;G</span><span class="client-sep">✦</span>
+        <span>State Farm</span><span class="client-sep">✦</span>
+        <span>Kraft Heinz</span><span class="client-sep">✦</span>
+        <span>Disney</span><span class="client-sep">✦</span>
+        <span>Kimberly-Clark</span><span class="client-sep">✦</span>
+        <span>General Mills</span><span class="client-sep">✦</span>
+        <span>SKYY Vodka</span><span class="client-sep">✦</span>
+        <span>Mars</span><span class="client-sep">✦</span>
+        <span>Campbell's</span><span class="client-sep">✦</span>
+        <span>Walmart</span><span class="client-sep">✦</span>
+        <span>Volkswagen</span><span class="client-sep">✦</span>
+        <span>Epic Games</span><span class="client-sep">✦</span>
+        <span>Mondelēz</span><span class="client-sep">✦</span>
+        <span>Kellogg's</span><span class="client-sep">✦</span>
+      </div>
     </div>
-  </section>
-
-  <!-- WAVY DIVIDER -->
-  <div class="wavy-divider">
-    <svg viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M0 20 Q30 5 60 20 Q90 35 120 20 Q150 5 180 20 Q210 35 240 20" stroke="#2B3EC1" stroke-width="2" fill="none"/>
-    </svg>
   </div>
 
-  <!-- WORK PREVIEW -->
-  <section class="work-section">
-    <h2 class="work-heading">Work</h2>
-    <div class="work-grid">
-
-      <div class="work-card">
-        <img src="assets/images/work-creative.png" alt="Creative — Baby playlist campaign" class="work-card-img">
-        <div class="work-card-body">
-          <h3 class="work-card-title">Creative</h3>
-          <p class="work-card-desc">Hear how I turned an RFP into a campaign to creatively introduce babies to the world of music</p>
-          <a href="work.html#creative" class="btn-blue">The Work</a>
-        </div>
-      </div>
-
-      <div class="work-card">
-        <img src="assets/images/work-brand.gif" alt="Brand — Target Twitter GIFs" class="work-card-img">
-        <div class="work-card-body">
-          <h3 class="work-card-title">Brand</h3>
-          <p class="work-card-desc">See how I put Target's Twitter in motion with our first set of branded GIFs</p>
-          <a href="work.html#brand" class="btn-blue">The Work</a>
-        </div>
-      </div>
-
-      <div class="work-card">
-        <img src="assets/images/work-partnerships.png" alt="Partnerships — Black Panther x Spotify" class="work-card-img">
-        <div class="work-card-body">
-          <h3 class="work-card-title">Partnerships</h3>
-          <p class="work-card-desc">Feel the power of Black Panther and Spotify collaborating for a cultural moment</p>
-          <a href="work.html#partnerships" class="btn-blue">The Work</a>
-        </div>
-      </div>
-
+  <!-- =============================================
+       WORK SECTION
+       ============================================= -->
+  <!-- PROJECT ROW 1: cream bg, text left / image right -->
+  <section class="proj-row proj-row--cream reveal">
+    <div class="proj-row-text">
+      <span class="section-label">01 / B2C</span>
+      <h2 class="proj-row-heading">Automating #TargetLoveNotes</h2>
+      <p class="proj-row-body">We took 1,000 handwritten love notes and turned them into personalized animated GIFs, scaling the campaign to reach millions while keeping every message feeling one-of-a-kind.</p>
+      <a href="projects/love-notes-2.html" class="proj-row-cta">See the work →</a>
     </div>
-    <div class="center">
-      <a href="work.html" class="btn-blue">See More Work</a>
+    <div class="proj-row-image">
+      <img src="assets/images/love-notes-2-image-asset-3.gif" alt="Love Notes 2.0">
     </div>
   </section>
 
-  <!-- ABOUT PREVIEW -->
-  <section class="about-split">
-    <div class="about-photo-side">
-      <img src="assets/images/about-photo.gif" alt="Francesca Shlain holding a disco ball">
+  <!-- PROJECT ROW 2: pink bg, image left / text right -->
+  <section class="proj-row proj-row--sand proj-row--flip reveal">
+    <div class="proj-row-image">
+      <img src="assets/images/skyy-toro-y-moi.png" alt="SKYY Vodka x Toro y Moi">
     </div>
-    <div class="about-text-side">
-      <p class="about-eyebrow">About <s>Francesca</s> Frankie</p>
-      <p class="about-body">
+    <div class="proj-row-text">
+      <span class="section-label">02 / B2B</span>
+      <h2 class="proj-row-heading">SKYY Matches the Mood</h2>
+      <p class="proj-row-body">We matched SKYY Vodka's "positive charge" rebrand to Spotify's mood data, targeting happy listeners with audio ads, a playlist microsite, and a custom artist series with Toro y Moi.</p>
+      <a href="projects/skyy.html" class="proj-row-cta">See the work →</a>
+    </div>
+  </section>
+
+  <!-- PROJECT ROW 3: orange bg, text left / image right -->
+  <section class="proj-row proj-row--dark reveal">
+    <div class="proj-row-text">
+      <span class="section-label">03 / B2C</span>
+      <h2 class="proj-row-heading">Where Products Come to Play</h2>
+      <p class="proj-row-body">Target's Instagram needed a personality. I built the strategy and creative that turned the feed into a place people actually wanted to follow: playful, unexpected, and very on-brand.</p>
+      <a href="projects/target-instagram.html" class="proj-row-cta">See the work →</a>
+    </div>
+    <div class="proj-row-image">
+      <img src="assets/images/instagram-play-1.jpg" alt="Target Instagram">
+    </div>
+  </section>
+
+  <div style="background:#3D35D4; text-align:center; padding: 32px;">
+    <a href="work.html" style="font-family:'Righteous',sans-serif; color:var(--yellow); font-size:1rem; letter-spacing:0.12em; text-transform:uppercase; border-bottom: 2px solid var(--yellow); padding-bottom:4px;">View all work →</a>
+  </div>
+
+  <!-- =============================================
+       ABOUT STRIP
+       ============================================= -->
+  <section class="about-strip" id="about">
+
+    <div class="about-left reveal">
+      <blockquote class="about-quote">
+        I've never met an RFP I<br><s>didn't like</s> couldn't conquer.
+      </blockquote>
+    </div>
+
+    <div class="about-right reveal">
+      <p class="section-label">About <s>Francesca</s> Frankie</p>
+      <p class="about-body-text">
         Hey there, I'm Frankie. I'm a marketing &amp; advertising professional with 8+ years of experience
         building creative solutions for big brands and clients across numerous marketing channels. I started
         my career on Target's social media team, shifted into digital advertising at Amazon &amp; Spotify,
@@ -129,33 +1018,76 @@
         career, my work has generated close to $32 million in revenue from clients across numerous
         industries from retail to CPG to tech.
       </p>
-      <a href="about.html" class="btn-outline-white">More About Me</a>
+      <a href="about.html" class="about-link">
+        More About Me
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
+
   </section>
 
-  <!-- FOOTER -->
-  <footer>
+  <!-- =============================================
+       FOOTER
+       ============================================= -->
+  <footer class="site-footer">
     <div class="footer-left">
       <div class="footer-name">Francesca<br>Shlain</div>
       <p class="footer-tagline">Creative brand marketer who's happiest when brainstorming</p>
     </div>
     <div class="footer-right">
       <ul class="footer-nav">
-        <li><a href="about.html">About</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="work.html">Work</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <div class="footer-icons">
-        <a href="mailto:fshlain@umich.edu" title="Email" aria-label="Email">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        <a href="mailto:francesca.shlain@gmail.com" title="Email" aria-label="Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m2 7 10 7 10-7"/>
+          </svg>
         </a>
         <a href="https://www.linkedin.com/in/francescashlain" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
         </a>
       </div>
     </div>
-    <hr class="footer-rule">
   </footer>
+
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2024 Francesca Shlain. All rights reserved.</span>
+    <span class="footer-copy">Made with intention ✦</span>
+  </div>
+
+  <!-- =============================================
+       INTERSECTION OBSERVER — scroll reveals
+       ============================================= -->
+  <script>
+    (function() {
+      const observer = new IntersectionObserver(
+        function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        observer.observe(el);
+      });
+    })();
+  </script>
 
 </body>
 </html>
