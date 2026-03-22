@@ -863,6 +863,12 @@ a.work-card:hover { opacity: 0.88; }
 
 .field-detail p + p { margin-top: 1em; }
 
+.field-detail a {
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .project-inline-media {
   display: flex;
   flex-direction: column;
